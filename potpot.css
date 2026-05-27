@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dark Portfolio</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#0d0d0d;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 10%;
+      background:#111;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      border-bottom:1px solid #222;
+    }
+
+    nav h1{
+      font-size:28px;
+      color:white;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:25px;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:#bbb;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:white;
+    }
+
+    .hero{
+      height:90vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    .hero h2{
+      font-size:65px;
+      margin-bottom:20px;
+      background:linear-gradient(to right,#fff,#666);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero p{
+      color:#aaa;
+      max-width:700px;
+      line-height:1.8;
+      margin-bottom:30px;
+    }
+
+    .btn{
+      padding:15px 35px;
+      background:white;
+      color:black;
+      border:none;
+      border-radius:40px;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      transform:scale(1.05);
+    }
+
+    section{
+      padding:80px 10%;
+    }
+
+    .section-title{
+      font-size:40px;
+      margin-bottom:40px;
+    }
+
+    .upload-box{
+      background:#161616;
+      padding:30px;
+      border-radius:20px;
+      margin-bottom:40px;
+      border:1px solid #222;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .gallery img,
+    .gallery video{
+      width:100%;
+      border-radius:20px;
+      border:1px solid #222;
+      transition:0.3s;
+    }
+
+    .gallery img:hover,
+    .gallery video:hover{
+      transform:scale(1.03);
+    }
+
+    .contact-form{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      background:#161616;
+      padding:40px;
+      border-radius:20px;
+      border:1px solid #222;
+    }
+
+    .contact-form input,
+    .contact-form textarea{
+      padding:15px;
+      border:none;
+      border-radius:10px;
+      background:#0d0d0d;
+      color:white;
+      border:1px solid #333;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      color:#777;
+      border-top:1px solid #222;
+    }
+
+    @media(max-width:768px){
+      .hero h2{
+        font-size:45px;
+      }
+
+      nav{
+        flex-direction:column;
+        gap:15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <h1>My Portfolio</h1>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#photos">Photos</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <h2>Creative Portfolio</h2>
+
+    <p>
+      Showcase your photography and videography in a modern dark-themed website.
+    </p>
+
+    <button class="btn">Explore</button>
+  </section>
+
+  <!-- PHOTO SECTION -->
+  <section id="photos">
+
+    <h2 class="section-title">Photo Gallery</h2>
+
+    <div class="upload-box">
+      <input type="file" id="photoUpload" accept="image/*" multiple>
+    </div>
+
+    <div class="gallery" id="photoGallery"></div>
+
+  </section>
+
+  <!-- VIDEO SECTION -->
+  <section id="videos">
+
+    <h2 class="section-title">Video Gallery</h2>
+
+    <div class="upload-box">
+      <input type="file" id="videoUpload" accept="video/*" multiple>
+    </div>
+
+    <div class="gallery" id="videoGallery"></div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+
+    <h2 class="section-title">Contact Me</h2>
+
+    <form class="contact-form">
+
+      <input type="text" placeholder="Your Name">
+
+      <input type="email" placeholder="Your Email">
+
+      <textarea rows="5" placeholder="Your Message"></textarea>
+
+      <button class="btn">Send Message</button>
+
+    </form>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 My Portfolio. All Rights Reserved.
+  </footer>
+
+  <script>
+    // PHOTO UPLOAD
+    const photoUpload = document.getElementById('photoUpload');
+    const photoGallery = document.getElementById('photoGallery');
+
+    photoUpload.addEventListener('change', function(event){
+
+      const files = event.target.files;
+
+      for(let file of files){
+
+        const img = document.createElement('img');
+
+        img.src = URL.createObjectURL(file);
+
+        photoGallery.appendChild(img);
+      }
+    });
+
+    // VIDEO UPLOAD
+    const videoUpload = document.getElementById('videoUpload');
+    const videoGallery = document.getElementById('videoGallery');
+
+    videoUpload.addEventListener('change', function(event){
+
+      const files = event.target.files;
+
+      for(let file of files){
+
+        const video = document.createElement('video');
+
+        video.src = URL.createObjectURL(file);
+
+        video.controls = true;
+
+        videoGallery.appendChild(video);
+      }
+    });
+  </script>
+
+</body>
+</html>
