@@ -28,6 +28,77 @@
       position:sticky;
       top:0;
       z-index:1000;
+<!-- VIDEO UPLOAD SECTION -->
+
+<section id="videos">
+
+  <h2>Upload Videos</h2>
+
+  <!-- Upload Button -->
+  <input type="file" id="videoUpload" accept="video/*" multiple>
+
+  <!-- Video Gallery -->
+  <div id="videoGallery"></div>
+
+</section>
+
+<style>
+  #videos{
+    padding:40px;
+    background:#111;
+    color:white;
+  }
+
+  #videoUpload{
+    margin:20px 0;
+    padding:10px;
+  }
+
+  #videoGallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+    margin-top:20px;
+  }
+
+  #videoGallery video{
+    width:100%;
+    border-radius:15px;
+    border:2px solid #333;
+  }
+</style>
+
+<script>
+
+  // GET ELEMENTS
+  const videoUpload = document.getElementById('videoUpload');
+  const videoGallery = document.getElementById('videoGallery');
+
+  // WHEN USER UPLOADS VIDEO
+  videoUpload.addEventListener('change', function(event){
+
+    const files = event.target.files;
+
+    for(let file of files){
+
+      // CREATE VIDEO ELEMENT
+      const video = document.createElement('video');
+
+      // CREATE VIDEO SOURCE
+      video.src = URL.createObjectURL(file);
+
+      // ENABLE CONTROLS
+      video.controls = true;
+
+      // AUTO SIZE
+      video.width = 300;
+
+      // ADD TO PAGE
+      videoGallery.appendChild(video);
+    }
+  });
+
+</script>
       border-bottom:1px solid #222;
     }
 
